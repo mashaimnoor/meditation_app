@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
+import 'package:meditationapp_task/screens/home/home_screen.dart';
 
 class ReminderScreen extends StatefulWidget {
 
@@ -26,18 +27,18 @@ class _ReminderScreenState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              SizedBox(height: 20),
+              SizedBox(height: 60),
 
               /// TITLE
               Text(
                 "What time would you\nlike to meditate?",
                 style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  fontWeight: .w700,
                 ),
               ),
 
-              SizedBox(height: 8),
+              SizedBox(height: 15),
 
               Text(
                 "Any time you can choose but We recommend\nfirst thing in the morning.",
@@ -47,7 +48,7 @@ class _ReminderScreenState
                 ),
               ),
 
-              SizedBox(height: 25),
+              SizedBox(height: 29),
 
               /// TIME PICKER CONTAINER
               Container(
@@ -78,7 +79,7 @@ class _ReminderScreenState
                 ),
               ),
 
-              SizedBox(height: 35),
+              SizedBox(height: 30),
 
               /// SECOND TITLE
               Text(
@@ -89,7 +90,7 @@ class _ReminderScreenState
                 ),
               ),
 
-              SizedBox(height: 8),
+              SizedBox(height: 15),
 
               Text(
                 "Everyday is best, but we recommend picking\nat least five.",
@@ -99,7 +100,7 @@ class _ReminderScreenState
                 ),
               ),
 
-              SizedBox(height: 25),
+              SizedBox(height: 40),
 
               /// DAY SELECTOR
               Row(
@@ -141,7 +142,8 @@ class _ReminderScreenState
                 }),
               ),
 
-              Spacer(),
+              //Spacer(),
+              SizedBox(height: 57,),
 
               /// SAVE BUTTON
               Container(
@@ -149,26 +151,31 @@ class _ReminderScreenState
                 height: 55,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xFF8E97FD),
-                      Color(0xFF6C63FF),
-                    ],
-                  ),
+                  // gradient: LinearGradient(
+                  //   // colors: [
+                  //   //   Color.fromRGBO(142, 151, 253, 1),
+                  //   //   Color.fromRGBO(246, 241, 251, 1),
+                  //   // ],
+                  // ),
                 ),
-                child: Center(
-                  child: Text(
-                    "SAVE",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
+                // child: Padding(
+                //   padding: EdgeInsetsGeometry.symmetric(horizontal: 22),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(142, 151, 253, 1),
+                        foregroundColor: Color.fromRGBO(246, 241, 251, 1),
+                        minimumSize: Size(double.infinity, 55)
                     ),
+                    onPressed: () {
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => HomeScreen()));
+                    },
+                    child: Text("Save"),
                   ),
                 ),
-              ),
 
-              SizedBox(height: 15),
+
+              SizedBox(height: 9),
 
               Center(
                 child: Text(

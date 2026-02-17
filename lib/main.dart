@@ -3,6 +3,9 @@ import 'package:meditationapp_task/screens/home/choose_topic.dart';
 import 'package:meditationapp_task/screens/auth/signin_screen.dart';
 import 'package:meditationapp_task/screens/auth/signup_screen.dart';
 import 'package:meditationapp_task/screens/auth/silent_moon_app.dart';
+import 'package:meditationapp_task/screens/home/course_detail_screen.dart';
+import 'package:meditationapp_task/screens/home/home_screen.dart';
+import 'package:meditationapp_task/screens/home/reminder_screen.dart';
 import 'package:meditationapp_task/screens/home/welcome_screen.dart';
 
 void main() {
@@ -21,9 +24,13 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignUpScreen(),
         '/welcome': (context) => WelcomeScreen(),
         '/choose-topic': (context) => ChooseTopicScreen(),
-        //'/reminder': (context) => ReminderScreen(),
+        '/reminder': (context) => ReminderScreen(),
+        '/home': (context) => HomeScreen(),
+        '/course': (context) => CourseDetailScreen(),
+
+
       },
-        home: IntroScreen(),
+        home: WelcomeScreen(),
     );
   }
 }

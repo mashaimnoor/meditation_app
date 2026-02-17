@@ -113,43 +113,39 @@ class ChooseTopicScreen extends StatelessWidget {
         )
       )
     );
-    }
+  }
 
-    Widget topicCard(String title, Color color, String image, double height, BuildContext context) {
-      return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ReminderScreen(),
-            ),
-          );
-        },
-        child: Container(
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(20),
-            // image: DecorationImage(
-            //   image: AssetImage(image),
-            //   fit: BoxFit.cover,
-            // ),
+  Widget topicCard(String title, Color color, String image, double height, BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ReminderScreen(),
           ),
-          padding: EdgeInsets.all(16),
-          child: Column(
-            mainAxisAlignment: .spaceBetween,
-            children:[
-              Image.asset(image, height: height,),
-              Text(
-              title,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ]
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(20),
         ),
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: .spaceBetween,
+          children:[
+            Image.asset(image, height: height,),
+            Text(
+            title,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ]
       ),
-    );
+    ),
+  );
   }
 }
