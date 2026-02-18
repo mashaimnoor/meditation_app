@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:meditationapp_task/screens/home/meditation_screen.dart';
 import 'package:meditationapp_task/widgets/bottom_nav.dart';
 import 'package:meditationapp_task/widgets/course_card.dart';
-import 'course_detail_screen.dart';
+// import 'course_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,10 +13,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   int currentIndex = 0;
 
+  final List<Widget> screens = [
+    Center(child: Text("Home Screen")),      // Home
+    Center(child: Text("Sleep Screen")),     // Sleep
+    MeditateScreen(),                         // Meditate
+    Center(child: Text("Music Screen")),     // Music
+    Center(child: Text("Profile Screen")),   // Profile
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNav(
+      bottomNavigationBar: BottomNav(
         currentIndex: currentIndex,
         onTap: (index){
           setState(() {
@@ -33,21 +41,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 SizedBox(height: 20),
 
-                Center(
-                  child: Text(
-                    "Silent Moon",
-                    style: TextStyle(
-                      fontSize: 18,
-                      letterSpacing: 3,
-                      fontWeight: FontWeight.w500,
+                Row(
+                  mainAxisAlignment: .center,
+                  spacing: 8,
+                  children: [
+                    Text(
+                      "Silent",
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                  ),
+                    Image.asset('assets/images/img_1.png', width: 22,),
+                    Text(
+                      "Moon",
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
 
                 SizedBox(height: 25),
 
                 Text(
-                  "Good Morning, Afsar",
+                  "Good Morning, Noor",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -91,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Expanded(
                       child: CourseCard(
                         title: "Relaxation",
-                        subtitle: "COURSE",
+                        subtitle: "MUSIC",
                         duration: "3-10 MIN",
                         image: ('assets/images/rel.png'),
                         color: Color.fromRGBO(255, 201, 126, 1),
@@ -117,6 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   decoration: BoxDecoration(
                     color: Color(0xff333242),
                     borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(image: AssetImage('assets/images/dailythoughts.png'))
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,20 +177,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height: 15),
 
                 SizedBox(
-                  height: 150,
+                  height: 185,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      recommendedCard("Focus"),
+                      recommendedCard("Focus", 'assets/images/focus.png' ),
                       SizedBox(width: 15),
-                      recommendedCard("Happiness"),
+                      recommendedCard("Happiness", 'assets/images/happiness.png'),
                       SizedBox(width: 15),
-                      recommendedCard("Focus"),
+                      recommendedCard("Focus", 'assets/images/focus.png'),
+
                     ],
                   ),
                 ),
 
-                SizedBox(height: 30),
+                SizedBox(height: 10),
               ],
             ),
           ),
@@ -187,34 +202,50 @@ class _HomeScreenState extends State<HomeScreen> {
 
   }
 
-  Widget recommendedCard(String title){
+  Widget recommendedCard(String title, String image) {
     return Container(
-      width: 160,
-      padding: EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        color: Color(0xffE6E7F2),
-        borderRadius: BorderRadius.circular(20),
-      ),
+      width: 162,
+      margin: EdgeInsets.only(right: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(child: Container()),
+          // Image Section
+          Container(
+            height: 113,
+            decoration: BoxDecoration(
+              color: Color.fromRGBO(132, 219, 199, 1),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: Image.asset(
+              image,
+              fit: BoxFit.cover,
+              //width: double.infinity,
+            ),
+          ),
 
+          SizedBox(height: 10),
+
+          // Title
           Text(
             title,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 16,
+              fontSize: 18,
             ),
           ),
 
+          SizedBox(height: 4),
+
+          // Subtitle
           Text(
             "MEDITATION • 3-10 MIN",
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey,
+              letterSpacing: 1,
             ),
-          )
+          ),
         ],
       ),
     );

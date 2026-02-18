@@ -28,6 +28,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  just_audio: ^0.9.36
+  path_provider: ^2.1.2
+  http: ^1.2.0
   flutter:
     sdk: flutter
   flutter_time_picker_spinner: ^2.0.0
