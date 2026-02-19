@@ -11,8 +11,6 @@ class MeditateScreen extends StatefulWidget {
 
 class _MeditateScreenState extends State<MeditateScreen> {
   int selectedTab = 0;
-  int currentIndex = 2; // ✅ mutable, not a getter
-
   final List<String> tabs = ["All", "My", "Anxious", "Sleep", "Kids"];
   final List<IconData> tabIcons = [
     Icons.all_inclusive,
@@ -26,19 +24,11 @@ class _MeditateScreenState extends State<MeditateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey[100],
-        bottomNavigationBar: BottomNav(
-          currentIndex: currentIndex,
-          onTap: (index) {
-            setState(() {
-              currentIndex = index; // ✅ now it works
-            });
-          },
-        ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
                 "Meditate",
@@ -96,12 +86,16 @@ class _MeditateScreenState extends State<MeditateScreen> {
                   // Navigate to detailed meditation
                   Navigator.push(context, MaterialPageRoute(builder: (_) => MeditationDetailScreen(title: "Daily Calm")));
                 },
-                child: Container(
-                  height: 90,
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                child:Container(
+                  height: 95,
+                  padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.orange[100],
+                    color: Color.fromRGBO(236, 211, 194, 1),
                     borderRadius: BorderRadius.circular(20),
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/meditation_screen_dtbg.png'),
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -118,7 +112,7 @@ class _MeditateScreenState extends State<MeditateScreen> {
                         ],
                       ),
                       CircleAvatar(
-                        backgroundColor: Colors.deepPurple,
+                        backgroundColor: Colors.black,
                         child: Icon(Icons.play_arrow, color: Colors.white),
                       ),
                     ],
@@ -134,10 +128,10 @@ class _MeditateScreenState extends State<MeditateScreen> {
                   mainAxisSpacing: 15,
                   childAspectRatio: 0.85,
                   children: [
-                    meditationCard("7 Days of Calm", Colors.blue[200]!),
-                    meditationCard("Anxiety Release", Colors.orange[300]!),
-                    meditationCard("Nature Peace", Colors.green[200]!),
-                    meditationCard("Mind Refresh", Colors.yellow[200]!),
+                    meditationCard("7 Days of Calm", Colors.blue[200]!, 'assets/images/7days_calm.png'),
+                    meditationCard("Anxiety Release", Colors.orange[300]!, 'assets/images/anxiety_release.png'),
+                    meditationCard("Nature Peace", Colors.green[200]!, 'assets/images/nature_peace.png'),
+                    meditationCard("Mind Refresh", Colors.yellow[200]!, 'assets/images/mind_refresh.png'),
                   ],
                 ),
               ),
@@ -148,19 +142,59 @@ class _MeditateScreenState extends State<MeditateScreen> {
     );
   }
 
-  Widget meditationCard(String title, Color color) {
+  Widget meditationCard(String title, Color color, String image) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => MeditationDetailScreen(title: title)));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => MeditationDetailScreen(title: title),
+          ),
+        );
       },
-      child: Container(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Stack(
+          children: [
+            // Background Image
+            Positioned.fill(
+              child: Image.asset(
+                image,
+                fit: BoxFit.cover,
+              ),
+            ),
+
+            // Dark Gradient Overlay (for text visibility)
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.center,
+                    colors: [
+                      Colors.black.withOpacity(0.6),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            // Title Bottom Left
+            Positioned(
+              left: 15,
+              bottom: 15,
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ],
         ),
-        alignment: Alignment.bottomLeft,
-        padding: EdgeInsets.all(15),
-        child: Text(title, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
       ),
     );
   }
