@@ -30,12 +30,12 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/course': (context) => CourseDetailScreen(),
         '/welcomesleep': (context) => WelcomeSleepScreen(),
-       // '/sleep': (context) => SleepScreen(),
+        '/sleep': (context) => SleepScreen(),
 
 
 
       },
-        home: WelcomeSleepScreen(),
+        home: WelcomeScreen(),
     );
   }
 }

@@ -16,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> screens = [
     HomeContent(),     // Home
-    //SleepScreen(),    // Sleep
+    SleepScreen(),    // Sleep
     MeditateScreen(),                         // Meditate
     Center(child: Text("Music Screen")),     // Music
     Center(child: Text("Profile Screen")),   // Profile
