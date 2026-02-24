@@ -5,6 +5,7 @@ class BottomNav extends StatelessWidget {
   final Function(int) onTap;
 
   const BottomNav({
+    super.key,
     required this.currentIndex,
     required this.onTap,
   });
@@ -12,23 +13,30 @@ class BottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    bool isSleepScreen = currentIndex == 1;
+
     BottomNavigationBarItem navItem(
         String imagePath, String label, int index) {
+
+      bool isSelected = currentIndex == index;
+
       return BottomNavigationBarItem(
         icon: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: currentIndex == index
-                ? const Color(0xff8E97FD)
+            color: isSelected
+                ? (isSleepScreen
+                ? Colors.white              // circle on dark theme
+                : const Color(0xff8E97FD))  // normal theme
                 : Colors.transparent,
             shape: BoxShape.circle,
           ),
           child: Image.asset(
             imagePath,
             height: 20,
-            color: currentIndex == index
-                ? Colors.white
-                : Colors.grey,
+            color: isSelected
+                ? (isSleepScreen ? Colors.black : Colors.white)
+                : (isSleepScreen ? Colors.white70 : Colors.grey),
           ),
         ),
         label: label,
@@ -37,10 +45,19 @@ class BottomNav extends StatelessWidget {
 
     return BottomNavigationBar(
       currentIndex: currentIndex,
-      onTap: onTap,
+      onTap: (index) => onTap(index),
+
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color(0xff8E97FD),
-      unselectedItemColor: Colors.grey,
+
+      backgroundColor:
+      isSleepScreen ? Color.fromRGBO(3, 23, 77, 1) : Colors.white,
+
+      selectedItemColor:
+      isSleepScreen ? Colors.white : const Color(0xff8E97FD),
+
+      unselectedItemColor:
+      isSleepScreen ? Colors.white70 : Colors.grey,
+
       items: [
         navItem("assets/images/home.png", "Home", 0),
         navItem("assets/images/moon1.png", "Sleep", 1),
@@ -49,6 +66,5 @@ class BottomNav extends StatelessWidget {
         navItem("assets/images/profile.png", "Noor", 4),
       ],
     );
-
   }
 }

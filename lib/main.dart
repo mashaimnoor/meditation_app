@@ -6,6 +6,7 @@ import 'package:meditationapp_task/screens/auth/silent_moon_app.dart';
 import 'package:meditationapp_task/screens/home/course_detail_screen.dart';
 import 'package:meditationapp_task/screens/home/home_screen.dart';
 import 'package:meditationapp_task/screens/home/reminder_screen.dart';
+import 'package:meditationapp_task/screens/home/sleep_detail_screen.dart';
 import 'package:meditationapp_task/screens/home/sleep_screen.dart';
 import 'package:meditationapp_task/screens/home/welcome_screen.dart';
 import 'package:meditationapp_task/screens/home/welcome_sleep.dart';
@@ -30,7 +31,9 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/course': (context) => CourseDetailScreen(),
         '/welcomesleep': (context) => WelcomeSleepScreen(),
-        '/sleep': (context) => SleepScreen(),
+         '/sleep': (context) => SleepScreen(),
+        '/sleepdetailscreen': (context) => SleepDetailScreen(),
+
 
 
 

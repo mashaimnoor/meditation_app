@@ -25,32 +25,31 @@ class _SleepScreenState extends State<SleepScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(3, 23, 77, 1),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
-
-              /// Header
-              const Text(
-                "Sleep Stories",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 10),
-              const Text(
-                "Soothing bedtime stories to help you fall\ninto a deep and natural sleep",
-                textAlign: .center,
-                style: TextStyle(color: Colors.white70),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                child: Column(
+                  children: [
+                    Text(
+                      "Sleep Stories",
+                      style: TextStyle(fontSize: 28, color: Colors.white ,fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      "Soothing brdtime stories to halp you fall \n into a deep and natural sleep",
+                      textAlign: .center,
+                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 12),
 
               // Tabs
               SizedBox(
-                height: 100,
+                height: 108,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: tabs.length,
@@ -96,69 +95,63 @@ class _SleepScreenState extends State<SleepScreen> {
                 ),
               ),
 
-
               const SizedBox(height: 25),
 
-              /// Main Big Card
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const SleepDetailScreen(),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                    /// Main Big Card
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const SleepDetailScreen(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 200,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          image: const DecorationImage(
+                            image: AssetImage("assets/images/ocean.png"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
                     ),
-                  );
-                },
-                child: Container(
-                  height: 200,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                      image: AssetImage("assets/images/ocean.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+
+                    const SizedBox(height: 25),
+
+                    /// Small Cards
+                    GridView.count(
+                      crossAxisCount: 2, // 2 columns
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 1, // adjust if needed
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(), // if inside another scroll view
+                      children: [
+                        storyCard("Night Island", "assets/images/night.png", "45 min.Sleep Music"),
+                        storyCard("Sweet Sleep", "assets/images/sweet.png", "45 min.Sleep Music"),
+                        storyCard("Good night", "assets/images/goodnight.png", "45 min.Sleep Music"),
+                        storyCard("Moon clouds", "assets/images/moonclouds.png", "45 min.Sleep Music"),
+                      ],
+                    )
+                    ],
+                  )
                 ),
-              ),
-
-              const SizedBox(height: 25),
-
-              /// Small Cards
-              Row(
-                children: [
-                  Expanded(
-                    child: storyCard(
-                        "Night Island", "assets/images/night.png"),
-                  ),
-                  const SizedBox(width: 15),
-                  Expanded(
-                    child: storyCard(
-                        "Sweet Sleep", "assets/images/sweet.png"),
-                  ),
-                ],
-              ),
-              SizedBox(height: 71 ,),
-              Row(
-                children: [
-                  Expanded(
-                    child: storyCard(
-                        "Night Island", "assets/images/goodnight.png"),
-                  ),
-                  const SizedBox(width: 15),
-                  Expanded(
-                    child: storyCard(
-                        "Sweet Sleep", "assets/images/moonclouds.png"),
-                  ),
-                ],
-              ),
+               ),
             ],
           ),
-        ),
-      ),
+       ),
     );
   }
 
-  Widget storyCard(String title, String image) {
+  Widget storyCard(String title, String image, String description) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -174,17 +167,31 @@ class _SleepScreenState extends State<SleepScreen> {
         height: 140,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          image: DecorationImage(
-            image: AssetImage(image),
-            fit: BoxFit.cover,
-          ),
         ),
         alignment: Alignment.bottomLeft,
-        padding: const EdgeInsets.all(10),
-        child: Text(
-          title,
-          style: const TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold),
+        child: Column(
+          spacing: 3,
+          children: [
+            Image.asset(image),
+            Align(
+              alignment: .centerLeft,
+              child: Text(
+                title,
+                style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+            Align(
+              alignment: .centerLeft,
+              child: Text(
+                description,
+                style: const TextStyle(
+                    color: Colors.grey,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
