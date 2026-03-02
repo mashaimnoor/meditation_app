@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeContent(),     // Home
     SleepScreen() ,    // Sleep
     MeditateScreen(),                         // Meditate
-    Center(child: Text("Music Screen")),     // Music
-    Center(child: Text("Profile Screen")),   // Profile
+    // Center(child: Text("Music Screen")),     // Music
+    // Center(child: Text("Profile Screen")),   // Profile
   ];
   @override
   Widget build(BuildContext context) {

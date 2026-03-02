@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meditationapp_task/screens/home/choose_topic.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(WelcomeScreen());
@@ -72,9 +73,10 @@ class WelcomeScreen extends StatelessWidget {
                   foregroundColor: Colors.indigo,
                   minimumSize: Size(double.infinity, 55)
                 ),
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => ChooseTopicScreen()));
+                onPressed: () async{
+                  final prefs= await SharedPreferences.getInstance();
+                  await prefs.setBool('seenWelcome', true);
+                  context.go('/choose-topic');
                 },
                 child: Text("GET STARTED"),
               ),
