@@ -11,13 +11,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   int currentIndex = 0;
 
   final List<Widget> screens = [
-    HomeContent(),     // Home
-    SleepScreen() ,    // Sleep
-    MeditateScreen(),                         // Meditate
+    HomeContent(), // Home
+    SleepScreen(), // Sleep
+    MeditateScreen(), // Meditate
     // Center(child: Text("Music Screen")),     // Music
     // Center(child: Text("Profile Screen")),   // Profile
   ];
@@ -36,4 +35,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

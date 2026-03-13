@@ -27,86 +27,89 @@ class _SignInScreenState extends State<SignInScreen> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage('assets/images/signin_bg.png'))
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/signin_bg.png'),
+                      ),
                     ),
                     child: Column(
                       children: [
+                        /// Back Button
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: IconButton(
+                            icon: const Icon(Icons.arrow_back),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ),
 
-                  /// Back Button
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
+                        const SizedBox(height: 20),
 
-                  const SizedBox(height: 20),
                         /// Title
-                  const Text(
-                    "Welcome Back!",
-                    style: TextStyle(
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
-                  ),
-
-                  const SizedBox(height: 33),
-
-                  /// Facebook Button
-                  Container(
-                    width: double.infinity,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF7583CA),
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        Image.asset('assets/images/fblogo.png', width: 12,),
-                        SizedBox(width: 40,),
-                        Text(
-                          "CONTINUE WITH FACEBOOK",
+                        const Text(
+                          "Welcome Back!",
                           style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+
+                        const SizedBox(height: 33),
+
+                        /// Facebook Button
+                        Container(
+                          width: double.infinity,
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: const Color(0xFF7583CA),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/fblogo.png',
+                                width: 12,
+                              ),
+                              SizedBox(width: 40),
+                              Text(
+                                "CONTINUE WITH FACEBOOK",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        /// Google Button
+                        Container(
+                          width: double.infinity,
+                          height: 55,
+                          decoration: BoxDecoration(
                             color: Colors.white,
-                            fontWeight: FontWeight.w600,
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(color: Colors.grey.shade300),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset('assets/images/img_2.png', width: 24),
+                              SizedBox(width: 40),
+                              Text(
+                                "CONTINUE WITH GOOGLE",
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  /// Google Button
-                  Container(
-                    width: double.infinity,
-                    height: 55,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(color: Colors.grey.shade300),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children:  [
-                        Image.asset('assets/images/img_2.png', width: 24,),
-                        SizedBox(width: 40),
-                        Text(
-                          "CONTINUE WITH GOOGLE",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                      ],
-                    )
                   ),
 
                   const SizedBox(height: 40),
@@ -127,7 +130,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     controller: emailController,
                     decoration: InputDecoration(
                       hintText: "Email address",
-                      hintStyle: TextStyle(color: Color.fromRGBO(161, 164, 178, 1)),
+                      hintStyle: TextStyle(
+                        color: Color.fromRGBO(161, 164, 178, 1),
+                      ),
 
                       filled: true,
                       fillColor: const Color(0xFFEDEEF3),
@@ -155,7 +160,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "Password",
-                      hintStyle: TextStyle(color: Color.fromRGBO(161, 164, 178, 1)),
+                      hintStyle: TextStyle(
+                        color: Color.fromRGBO(161, 164, 178, 1),
+                      ),
                       filled: true,
                       fillColor: const Color(0xFFEDEEF3),
                       border: OutlineInputBorder(
@@ -189,8 +196,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.pushReplacementNamed(
-                              context, '/welcome');
+                          Navigator.pushReplacementNamed(context, '/welcome');
                         }
                       },
                       child: const Text(
@@ -209,9 +215,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   /// Forgot Password
                   const Text(
                     "Forgot Password?",
-                    style: TextStyle(
-                      color: Color.fromRGBO(63, 65, 78, 1),
-                    ),
+                    style: TextStyle(color: Color.fromRGBO(63, 65, 78, 1)),
                   ),
 
                   const SizedBox(height: 104),
@@ -237,7 +241,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meditationapp_task/widgets/course_card.dart';
 
-
-
 class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -13,7 +11,6 @@ class HomeContent extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               SizedBox(height: 20),
 
               Row(
@@ -37,20 +34,14 @@ class HomeContent extends StatelessWidget {
 
               Text(
                 "Good Morning, Noor",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
 
               SizedBox(height: 5),
 
               Text(
                 "We Wish you have a good day",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14,
-                ),
+                style: TextStyle(color: Colors.grey, fontSize: 14),
               ),
 
               SizedBox(height: 25),
@@ -127,17 +118,14 @@ class HomeContent extends StatelessWidget {
                         SizedBox(height: 5),
                         Text(
                           "MEDITATION • 3-10 MIN",
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 12,
-                          ),
+                          style: TextStyle(color: Colors.white70, fontSize: 12),
                         ),
                       ],
                     ),
                     CircleAvatar(
                       backgroundColor: Colors.white,
                       child: Icon(Icons.play_arrow, color: Colors.black),
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -146,10 +134,7 @@ class HomeContent extends StatelessWidget {
 
               Text(
                 "Recommended for you",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
 
               SizedBox(height: 15),
@@ -190,18 +175,12 @@ class HomeContent extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
             clipBehavior: Clip.antiAlias,
-            child: Image.asset(
-              image,
-              fit: BoxFit.cover,
-            ),
+            child: Image.asset(image, fit: BoxFit.cover),
           ),
           SizedBox(height: 10),
           Text(
             title,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           SizedBox(height: 4),
           Text(

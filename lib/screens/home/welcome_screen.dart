@@ -24,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
                   "Silent",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Image.asset('assets/images/img_1.png', width: 22,),
+                Image.asset('assets/images/img_1.png', width: 22),
                 Text(
                   "Moon",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -35,9 +35,10 @@ class WelcomeScreen extends StatelessWidget {
             Text(
               "Hi! Noor Welcome",
               style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold),
+                fontSize: 24,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Text(
               "To Silent Moon",
@@ -50,7 +51,7 @@ class WelcomeScreen extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white70),
             ),
-            SizedBox(height: 40,),
+            SizedBox(height: 40),
 
             Container(
               width: double.infinity,
@@ -68,24 +69,24 @@ class WelcomeScreen extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsetsGeometry.symmetric(horizontal: 22),
                 child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.indigo,
-                  minimumSize: Size(double.infinity, 55)
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.indigo,
+                    minimumSize: Size(double.infinity, 55),
+                  ),
+                  onPressed: () async {
+                    final prefs = await SharedPreferences.getInstance();
+                    await prefs.setBool('seenWelcome', true);
+                    context.go('/choose-topic');
+                  },
+                  child: Text("GET STARTED"),
                 ),
-                onPressed: () async{
-                  final prefs= await SharedPreferences.getInstance();
-                  await prefs.setBool('seenWelcome', true);
-                  context.go('/choose-topic');
-                },
-                child: Text("GET STARTED"),
               ),
-            ),
             ),
             //Spacer(),
           ],
         ),
-      )
+      ),
     );
   }
 }

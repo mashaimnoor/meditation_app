@@ -12,7 +12,6 @@ class CourseDetailScreen extends StatefulWidget {
 
 class _CourseDetailScreenState extends State<CourseDetailScreen>
     with SingleTickerProviderStateMixin {
-
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   bool isFavorite = false;
@@ -25,20 +24,17 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
     {
       "title": "Focus Attention",
       "duration": "10 MIN",
-      "url":
-      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+      "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
     },
     {
       "title": "Body Scan",
       "duration": "5 MIN",
-      "url":
-      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+      "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
     },
     {
       "title": "Making Happiness",
       "duration": "3 MIN",
-      "url":
-      "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+      "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
     },
   ];
 
@@ -72,9 +68,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
     final file = File('${dir.path}/audio.mp3');
     await file.writeAsBytes(response.bodyBytes);
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Downloaded Successfully")),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text("Downloaded Successfully")));
   }
 
   @override
@@ -82,13 +78,13 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
     return Scaffold(
       body: Column(
         children: [
-
           /// TOP IMAGE
           Stack(
             children: [
               ClipRRect(
-                borderRadius:
-                BorderRadius.vertical(bottom: Radius.circular(25)),
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(25),
+                ),
                 child: Image.asset(
                   "assets/images/morning.png",
                   height: 250,
@@ -118,12 +114,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
                         scale: isFavorite ? 1.3 : 1.0,
                         duration: Duration(milliseconds: 200),
                         child: _circleIcon(
-                          isFavorite
-                              ? Icons.favorite
-                              : Icons.favorite_border,
+                          isFavorite ? Icons.favorite : Icons.favorite_border,
                           null,
-                          iconColor:
-                          isFavorite ? Colors.red : Colors.black,
+                          iconColor: isFavorite ? Colors.red : Colors.black,
                         ),
                       ),
                     ),
@@ -143,7 +136,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Text(
                     "Happy Morning",
                     style: TextStyle(
@@ -193,14 +185,10 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
 
                   Text(
                     "Pick a Nrrator",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
 
                   SizedBox(height: 15),
-
 
                   /// SMOOTH TAB
                   TabBar(
@@ -221,8 +209,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
                       itemCount: tracks.length,
                       itemBuilder: (context, index) {
                         final track = tracks[index];
-                        bool isActive =
-                            currentPlayingIndex == index;
+                        bool isActive = currentPlayingIndex == index;
 
                         return ListTile(
                           onTap: () {
@@ -238,16 +225,13 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
                           },
 
                           leading: GestureDetector(
-                            onTap: () =>
-                                playAudio(track['url']!, index),
+                            onTap: () => playAudio(track['url']!, index),
                             child: CircleAvatar(
                               backgroundColor: isActive
                                   ? Colors.blue
                                   : Colors.grey.shade300,
                               child: Icon(
-                                isActive
-                                    ? Icons.stop
-                                    : Icons.play_arrow,
+                                isActive ? Icons.stop : Icons.play_arrow,
                                 color: Colors.white,
                               ),
                             ),
@@ -267,8 +251,11 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
     );
   }
 
-  Widget _circleIcon(IconData icon, VoidCallback? onTap,
-      {Color iconColor = Colors.black}) {
+  Widget _circleIcon(
+    IconData icon,
+    VoidCallback? onTap, {
+    Color iconColor = Colors.black,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

@@ -18,7 +18,6 @@ class _SleepDetailScreenState extends State<SleepDetailScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               /// Top Image with back button
               Stack(
                 children: [
@@ -49,7 +48,10 @@ class _SleepDetailScreenState extends State<SleepDetailScreen> {
                     child: CircleAvatar(
                       backgroundColor: Colors.white24,
                       child: IconButton(
-                        icon: const Icon(Icons.favorite_border, color: Colors.white),
+                        icon: const Icon(
+                          Icons.favorite_border,
+                          color: Colors.white,
+                        ),
                         onPressed: () {},
                       ),
                     ),
@@ -92,11 +94,17 @@ class _SleepDetailScreenState extends State<SleepDetailScreen> {
                   children: const [
                     Icon(Icons.favorite, color: Colors.white54, size: 18),
                     SizedBox(width: 5),
-                    Text("24.234 Favorites", style: TextStyle(color: Colors.white54)),
+                    Text(
+                      "24.234 Favorites",
+                      style: TextStyle(color: Colors.white54),
+                    ),
                     SizedBox(width: 20),
                     Icon(Icons.headset, color: Colors.white54, size: 18),
                     SizedBox(width: 5),
-                    Text("34.234 Listening", style: TextStyle(color: Colors.white54)),
+                    Text(
+                      "34.234 Listening",
+                      style: TextStyle(color: Colors.white54),
+                    ),
                   ],
                 ),
               ),
@@ -108,7 +116,11 @@ class _SleepDetailScreenState extends State<SleepDetailScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: const Text(
                   "Related",
-                  style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
 
@@ -140,10 +152,10 @@ class _SleepDetailScreenState extends State<SleepDetailScreen> {
                             ),
                           ),
 
-                        child: const Text(
-                          "Moon Clouds\n45 MIN • SLEEP MUSIC",
-                          style: TextStyle(color: Colors.white, fontSize: 12),
-                        ),
+                          child: const Text(
+                            "Moon Clouds\n45 MIN • SLEEP MUSIC",
+                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          ),
                         ),
                       ),
                     ),
@@ -183,42 +195,40 @@ class _SleepDetailScreenState extends State<SleepDetailScreen> {
               const SizedBox(height: 30),
 
               /// Play Button
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SleepPlayerScreen(
-                      title: "Night island", // the title you want to show
-                      url: "https://www.example.com/audio.mp3", // the audio URL
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SleepPlayerScreen(
+                          title: "Night island", // the title you want to show
+                          url:
+                              "https://www.example.com/audio.mp3", // the audio URL
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 55,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFF8E97FD), Color(0xFF6F7BF7)],
+                      ),
                     ),
-                  ),
-                );
-              },
-              child: Container(
-                height: 55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xFF8E97FD),
-                      Color(0xFF6F7BF7),
-                    ],
-                  ),
-                ),
-                alignment: Alignment.center,
-                child: const Text(
-                  "PLAY",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      "PLAY",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
 
               const SizedBox(height: 30),
             ],

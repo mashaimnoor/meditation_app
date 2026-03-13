@@ -3,15 +3,11 @@ import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:meditationapp_task/screens/home/home_screen.dart';
 
 class ReminderScreen extends StatefulWidget {
-
   @override
-  _ReminderScreenState createState() =>
-      _ReminderScreenState();
+  _ReminderScreenState createState() => _ReminderScreenState();
 }
 
-class _ReminderScreenState
-    extends State<ReminderScreen> {
-
+class _ReminderScreenState extends State<ReminderScreen> {
   DateTime selectedTime = DateTime.now();
   List<String> days = ["SU", "M", "T", "W", "TH", "F", "S"];
   List<int> selectedDays = [];
@@ -26,26 +22,19 @@ class _ReminderScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               SizedBox(height: 60),
 
               /// TITLE
               Text(
                 "What time would you\nlike to meditate?",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: .w700,
-                ),
+                style: TextStyle(fontSize: 24, fontWeight: .w700),
               ),
 
               SizedBox(height: 15),
 
               Text(
                 "Any time you can choose but We recommend\nfirst thing in the morning.",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
 
               SizedBox(height: 29),
@@ -59,10 +48,7 @@ class _ReminderScreenState
                 ),
                 child: TimePickerSpinner(
                   is24HourMode: false,
-                  normalTextStyle: TextStyle(
-                    fontSize: 18,
-                    color: Colors.grey,
-                  ),
+                  normalTextStyle: TextStyle(fontSize: 18, color: Colors.grey),
                   highlightedTextStyle: TextStyle(
                     fontSize: 22,
                     color: Colors.black,
@@ -84,20 +70,14 @@ class _ReminderScreenState
               /// SECOND TITLE
               Text(
                 "Which day would you\nlike to meditate?",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
 
               SizedBox(height: 15),
 
               Text(
                 "Everyday is best, but we recommend picking\nat least five.",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
-                ),
+                style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
 
               SizedBox(height: 40),
@@ -143,7 +123,7 @@ class _ReminderScreenState
               ),
 
               //Spacer(),
-              SizedBox(height: 57,),
+              SizedBox(height: 57),
 
               /// SAVE BUTTON
               Container(
@@ -160,20 +140,21 @@ class _ReminderScreenState
                 ),
                 // child: Padding(
                 //   padding: EdgeInsetsGeometry.symmetric(horizontal: 22),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromRGBO(142, 151, 253, 1),
-                        foregroundColor: Color.fromRGBO(246, 241, 251, 1),
-                        minimumSize: Size(double.infinity, 55)
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                          context, MaterialPageRoute(builder: (_) => HomeScreen()));
-                    },
-                    child: Text("Save"),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(142, 151, 253, 1),
+                    foregroundColor: Color.fromRGBO(246, 241, 251, 1),
+                    minimumSize: Size(double.infinity, 55),
                   ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => HomeScreen()),
+                    );
+                  },
+                  child: Text("Save"),
                 ),
-
+              ),
 
               SizedBox(height: 9),
 

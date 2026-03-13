@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class CourseCard extends StatelessWidget {
-
   final String title;
   final String subtitle;
   final String duration;
@@ -37,17 +36,16 @@ class CourseCard extends StatelessWidget {
             alignment: AlignmentGeometry.topRight,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: title == 'Basics' ?
-                Image.asset(image, height: 105)
-                :
-                Align(
-                  alignment: .bottomRight,
-                  child: Transform.scale(
-                    scale: 1.15,
-                    child: Image.asset(image, height: 105)
-                  ),
-                ),
-              ),
+              child: title == 'Basics'
+                  ? Image.asset(image, height: 105)
+                  : Align(
+                      alignment: .bottomRight,
+                      child: Transform.scale(
+                        scale: 1.15,
+                        child: Image.asset(image, height: 105),
+                      ),
+                    ),
+            ),
           ),
 
           Padding(
@@ -79,37 +77,30 @@ class CourseCard extends StatelessWidget {
                   children: [
                     Text(
                       duration,
-                      style: TextStyle(
-                        color: textColor,
-                        fontSize: 12,
-                      ),
+                      style: TextStyle(color: textColor, fontSize: 12),
                     ),
                     SizedBox(
                       width: 70,
-                    child:
-                    ElevatedButton(
-                      onPressed: onTap,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: buttonColor,
-                        padding: EdgeInsetsGeometry.symmetric(horizontal: 2)
-                        // shape: StadiumBorder(),
-                      ),
-                      child: Text(
-                        "START",
-                        style: TextStyle(
-                          color: color,
-                          fontSize: 12,
+                      child: ElevatedButton(
+                        onPressed: onTap,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          padding: EdgeInsetsGeometry.symmetric(horizontal: 2),
+                          // shape: StadiumBorder(),
+                        ),
+                        child: Text(
+                          "START",
+                          style: TextStyle(color: color, fontSize: 12),
                         ),
                       ),
                     ),
-                    )
                   ],
-                )
+                ),
               ],
             ),
           ),
-            ],
-          )
+        ],
+      ),
     );
   }
 }

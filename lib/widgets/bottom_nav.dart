@@ -4,20 +4,13 @@ class BottomNav extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const BottomNav({
-    super.key,
-    required this.currentIndex,
-    required this.onTap,
-  });
+  const BottomNav({super.key, required this.currentIndex, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-
     bool isSleepScreen = currentIndex == 1;
 
-    BottomNavigationBarItem navItem(
-        String imagePath, String label, int index) {
-
+    BottomNavigationBarItem navItem(String imagePath, String label, int index) {
       bool isSelected = currentIndex == index;
 
       return BottomNavigationBarItem(
@@ -26,8 +19,9 @@ class BottomNav extends StatelessWidget {
           decoration: BoxDecoration(
             color: isSelected
                 ? (isSleepScreen
-                ? Colors.white              // circle on dark theme
-                : const Color(0xff8E97FD))  // normal theme
+                      ? Colors
+                            .white // circle on dark theme
+                      : const Color(0xff8E97FD)) // normal theme
                 : Colors.transparent,
             shape: BoxShape.circle,
           ),
@@ -49,14 +43,13 @@ class BottomNav extends StatelessWidget {
 
       type: BottomNavigationBarType.fixed,
 
-      backgroundColor:
-      isSleepScreen ? Color.fromRGBO(3, 23, 77, 1) : Colors.white,
+      backgroundColor: isSleepScreen
+          ? Color.fromRGBO(3, 23, 77, 1)
+          : Colors.white,
 
-      selectedItemColor:
-      isSleepScreen ? Colors.white : const Color(0xff8E97FD),
+      selectedItemColor: isSleepScreen ? Colors.white : const Color(0xff8E97FD),
 
-      unselectedItemColor:
-      isSleepScreen ? Colors.white70 : Colors.grey,
+      unselectedItemColor: isSleepScreen ? Colors.white70 : Colors.grey,
 
       items: [
         navItem("assets/images/home.png", "Home", 0),

@@ -32,41 +32,22 @@ class MyApp extends StatelessWidget {
       return null;
     },
     routes: [
+      GoRoute(path: '/', builder: (context, state) => WelcomeScreen()),
 
-      GoRoute(
-        path: '/',
-        builder: (context, state) => WelcomeScreen(),
-      ),
+      GoRoute(path: '/signin', builder: (context, state) => SignInScreen()),
 
-      GoRoute(
-        path: '/signin',
-        builder: (context, state) => SignInScreen(),
-      ),
+      GoRoute(path: '/signup', builder: (context, state) => SignUpScreen()),
 
-      GoRoute(
-        path: '/signup',
-        builder: (context, state) => SignUpScreen(),
-      ),
-
-      GoRoute(
-        path: '/welcome',
-        builder: (context, state) => WelcomeScreen(),
-      ),
+      GoRoute(path: '/welcome', builder: (context, state) => WelcomeScreen()),
 
       GoRoute(
         path: '/choose-topic',
         builder: (context, state) => ChooseTopicScreen(),
       ),
 
-      GoRoute(
-        path: '/reminder',
-        builder: (context, state) => ReminderScreen(),
-      ),
+      GoRoute(path: '/reminder', builder: (context, state) => ReminderScreen()),
 
-      GoRoute(
-        path: '/home',
-        builder: (context, state) => HomeScreen(),
-      ),
+      GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
 
       GoRoute(
         path: '/course',
@@ -78,16 +59,12 @@ class MyApp extends StatelessWidget {
         builder: (context, state) => WelcomeSleepScreen(),
       ),
 
-      GoRoute(
-        path: '/sleep',
-        builder: (context, state) => SleepScreen(),
-      ),
+      GoRoute(path: '/sleep', builder: (context, state) => SleepScreen()),
 
       GoRoute(
         path: '/sleepdetailscreen',
         builder: (context, state) => SleepDetailScreen(),
       ),
-
     ],
   );
 

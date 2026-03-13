@@ -3,7 +3,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:meditationapp_task/screens/home/reminder_screen.dart';
 
 class ChooseTopicScreen extends StatelessWidget {
-
   final List<int> heights = [230, 167, 200, 210, 180, 167];
 
   final List<Map<String, dynamic>> topics = [
@@ -46,7 +45,6 @@ class ChooseTopicScreen extends StatelessWidget {
   ];
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
@@ -61,25 +59,18 @@ class ChooseTopicScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             SizedBox(height: 10),
 
             Text(
               "What Brings you\nto Silent Moon?",
-              style: TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
             ),
 
             SizedBox(height: 8),
 
             Text(
               "choose a topic to focus on:",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
+              style: TextStyle(fontSize: 16, color: Colors.grey),
             ),
 
             SizedBox(height: 20),
@@ -91,38 +82,41 @@ class ChooseTopicScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   mainAxisSpacing: 15,
                   crossAxisSpacing: 15,
-                    children: List.generate(topics.length, (index) {
-                      final topic = topics[index];
+                  children: List.generate(topics.length, (index) {
+                    final topic = topics[index];
 
-                      return StaggeredGridTile.fit(
-                        crossAxisCellCount: 1,
-                        child: topicCard(
-                          topic["title"],
-                          topic["color"],
-                          topic["image"],
-                          topic["height"],
-                          context,
-                        ),
-                      );
-                    }
-                  ),
+                    return StaggeredGridTile.fit(
+                      crossAxisCellCount: 1,
+                      child: topicCard(
+                        topic["title"],
+                        topic["color"],
+                        topic["image"],
+                        topic["height"],
+                        context,
+                      ),
+                    );
+                  }),
                 ),
-              )
+              ),
             ),
-          ]
-        )
-      )
+          ],
+        ),
+      ),
     );
   }
 
-  Widget topicCard(String title, Color color, String image, double height, BuildContext context) {
+  Widget topicCard(
+    String title,
+    Color color,
+    String image,
+    double height,
+    BuildContext context,
+  ) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => ReminderScreen(),
-          ),
+          MaterialPageRoute(builder: (context) => ReminderScreen()),
         );
       },
       child: Container(
@@ -133,19 +127,19 @@ class ChooseTopicScreen extends StatelessWidget {
         padding: EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: .spaceBetween,
-          children:[
-            Image.asset(image, height: height,),
+          children: [
+            Image.asset(image, height: height),
             Text(
-            title,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+              title,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-        ]
+          ],
+        ),
       ),
-    ),
-  );
+    );
   }
 }

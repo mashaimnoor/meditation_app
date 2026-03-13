@@ -12,7 +12,6 @@ class SleepPlayerScreen extends StatefulWidget {
 }
 
 class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
-
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   bool isPlaying = false;
@@ -62,11 +61,11 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
     return Scaffold(
       body: Stack(
         children: [
-
           /// Background
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/images/img_4.png'),
+              image: DecorationImage(
+                image: AssetImage('assets/images/img_4.png'),
                 fit: BoxFit.contain,
                 alignment: Alignment.topCenter,
               ),
@@ -86,7 +85,6 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-
                   /// Top Buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,12 +118,12 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
                           SizedBox(width: 10),
                           _circleButton(Icons.download, () {}),
                         ],
-                      )
+                      ),
                     ],
                   ),
 
                   //Spacer(),
-                  SizedBox(height: 286,),
+                  SizedBox(height: 286),
 
                   /// Title
                   Text(
@@ -141,10 +139,7 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
 
                   Text(
                     "sleep music",
-                    style: TextStyle(
-                      letterSpacing: 1.5,
-                      color: Colors.grey,
-                    ),
+                    style: TextStyle(letterSpacing: 1.5, color: Colors.grey),
                   ),
 
                   SizedBox(height: 40),
@@ -153,14 +148,12 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
                       IconButton(
                         icon: Icon(Icons.replay_10),
                         iconSize: 32,
                         color: Colors.white,
                         onPressed: () {
-                          final newPos =
-                              position - Duration(seconds: 15);
+                          final newPos = position - Duration(seconds: 15);
                           _audioPlayer.seek(newPos);
                         },
                       ),
@@ -186,9 +179,7 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
-                            isPlaying
-                                ? Icons.pause
-                                : Icons.play_arrow,
+                            isPlaying ? Icons.pause : Icons.play_arrow,
                             color: Colors.grey,
                             size: 40,
                           ),
@@ -202,8 +193,7 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
                         iconSize: 32,
                         color: Colors.white,
                         onPressed: () {
-                          final newPos =
-                              position + Duration(seconds: 15);
+                          final newPos = position + Duration(seconds: 15);
                           _audioPlayer.seek(newPos);
                         },
                       ),
@@ -217,10 +207,11 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
                     min: 0,
                     max: duration.inSeconds.toDouble(),
                     value: position.inSeconds.toDouble().clamp(
-                        0, duration.inSeconds.toDouble()),
+                      0,
+                      duration.inSeconds.toDouble(),
+                    ),
                     onChanged: (value) {
-                      _audioPlayer
-                          .seek(Duration(seconds: value.toInt()));
+                      _audioPlayer.seek(Duration(seconds: value.toInt()));
                     },
                   ),
 
@@ -249,8 +240,11 @@ class _SleepPlayerScreenState extends State<SleepPlayerScreen> {
     );
   }
 
-  Widget _circleButton(IconData icon, VoidCallback? onTap,
-      {Color iconColor = Colors.white}) {
+  Widget _circleButton(
+    IconData icon,
+    VoidCallback? onTap, {
+    Color iconColor = Colors.white,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

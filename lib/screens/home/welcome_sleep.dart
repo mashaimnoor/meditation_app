@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meditationapp_task/screens/home/choose_topic.dart';
 
-
 class WelcomeSleepScreen extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +23,7 @@ class WelcomeSleepScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(height: 80,),
+                  SizedBox(height: 80),
                   // Title
                   const Text(
                     'Welcome to Sleep',
@@ -43,45 +40,42 @@ class WelcomeSleepScreen extends StatelessWidget {
                   // Description
                   const Text(
                     'Explore the new king of sleep. It uses sound\nand visualization to create perfect conditions\nfor refreshing sleep.',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
                     textAlign: TextAlign.center,
                   ),
 
-
-
-                  SizedBox(height: 68,),
+                  SizedBox(height: 68),
 
                   // Birds image
-
                   Image.asset(
                     'assets/images/sleep_screen_birds.png', // replace with your birds image
                     height: 200,
                   ),
                   const SizedBox(height: 150),
 
-
                   Container(
-                  // Get Started Button
-                  alignment: Alignment.bottomCenter,
+                    // Get Started Button
+                    alignment: Alignment.bottomCenter,
 
-                  child: Padding(
-                    padding: EdgeInsetsGeometry.symmetric(horizontal: 22),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
+                    child: Padding(
+                      padding: EdgeInsetsGeometry.symmetric(horizontal: 22),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
                           backgroundColor: Color.fromRGBO(142, 151, 253, 1),
                           foregroundColor: Colors.white,
-                          minimumSize: Size(double.infinity, 55)
+                          minimumSize: Size(double.infinity, 55),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ChooseTopicScreen(),
+                            ),
+                          );
+                        },
+                        child: Text("GET STARTED"),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (_) => ChooseTopicScreen()));
-                      },
-                      child: Text("GET STARTED"),
                     ),
-                  ),
                   ),
                   const SizedBox(height: 16),
                 ],

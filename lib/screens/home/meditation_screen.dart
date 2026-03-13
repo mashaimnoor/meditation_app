@@ -70,10 +70,16 @@ class _MeditateScreenState extends State<MeditateScreen> {
                           margin: EdgeInsets.only(right: 15),
                           padding: EdgeInsets.all(18),
                           decoration: BoxDecoration(
-                            color: isSelected ? Color.fromRGBO(142, 151, 253, 1) : Color.fromRGBO(160, 163, 177, 1),
+                            color: isSelected
+                                ? Color.fromRGBO(142, 151, 253, 1)
+                                : Color.fromRGBO(160, 163, 177, 1),
                             borderRadius: BorderRadius.circular(25),
                           ),
-                          child: Icon(tabIcons[index], size: 28, color: Colors.white),
+                          child: Icon(
+                            tabIcons[index],
+                            size: 28,
+                            color: Colors.white,
+                          ),
                         ),
 
                         SizedBox(height: 8),
@@ -84,7 +90,7 @@ class _MeditateScreenState extends State<MeditateScreen> {
                           style: TextStyle(
                             color: Color.fromRGBO(160, 163, 177, 1),
                             fontWeight: FontWeight.bold,
-                            fontSize: 16
+                            fontSize: 16,
                           ),
                         ),
                       ],
@@ -104,14 +110,16 @@ class _MeditateScreenState extends State<MeditateScreen> {
                     // Daily Calm Card
                     GestureDetector(
                       onTap: () {},
-                      child:Container(
+                      child: Container(
                         height: 95,
                         padding: EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           color: Color.fromRGBO(241, 221, 207, 1),
                           borderRadius: BorderRadius.circular(20),
                           image: DecorationImage(
-                            image: AssetImage('assets/images/meditation_screen_dtbg.png'),
+                            image: AssetImage(
+                              'assets/images/meditation_screen_dtbg.png',
+                            ),
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -124,14 +132,23 @@ class _MeditateScreenState extends State<MeditateScreen> {
                               children: [
                                 Text(
                                   "Daily Calm",
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
                                 ),
-                                Text("APR 30 • PAUSE PRACTICE", style: TextStyle(color: Colors.grey[700])),
+                                Text(
+                                  "APR 30 • PAUSE PRACTICE",
+                                  style: TextStyle(color: Colors.grey[700]),
+                                ),
                               ],
                             ),
                             CircleAvatar(
                               backgroundColor: Colors.black,
-                              child: Icon(Icons.play_arrow, color: Colors.white),
+                              child: Icon(
+                                Icons.play_arrow,
+                                color: Colors.white,
+                              ),
                             ),
                           ],
                         ),
@@ -148,10 +165,26 @@ class _MeditateScreenState extends State<MeditateScreen> {
                         mainAxisSpacing: 15,
                         childAspectRatio: 0.85,
                         children: [
-                          meditationCard("7 Days of Calm", Colors.blue[200]!, 'assets/images/7days_calm.png'),
-                          meditationCard("Anxiety Release", Colors.orange[300]!, 'assets/images/anxiety_release.png'),
-                          meditationCard("Nature Peace", Colors.green[200]!, 'assets/images/nature_peace.png'),
-                          meditationCard("Mind Refresh", Colors.yellow[200]!, 'assets/images/mind_refresh.png'),
+                          meditationCard(
+                            "7 Days of Calm",
+                            Colors.blue[200]!,
+                            'assets/images/7days_calm.png',
+                          ),
+                          meditationCard(
+                            "Anxiety Release",
+                            Colors.orange[300]!,
+                            'assets/images/anxiety_release.png',
+                          ),
+                          meditationCard(
+                            "Nature Peace",
+                            Colors.green[200]!,
+                            'assets/images/nature_peace.png',
+                          ),
+                          meditationCard(
+                            "Mind Refresh",
+                            Colors.yellow[200]!,
+                            'assets/images/mind_refresh.png',
+                          ),
                         ],
                       ),
                     ),
@@ -174,12 +207,7 @@ class _MeditateScreenState extends State<MeditateScreen> {
         child: Stack(
           children: [
             // Background Image
-            Positioned.fill(
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
-            ),
+            Positioned.fill(child: Image.asset(image, fit: BoxFit.cover)),
 
             // Dark Gradient Overlay (for text visibility)
             Positioned.fill(
@@ -188,10 +216,7 @@ class _MeditateScreenState extends State<MeditateScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.bottomCenter,
                     end: Alignment.center,
-                    colors: [
-                      Colors.black.withOpacity(0.6),
-                      Colors.transparent,
-                    ],
+                    colors: [Colors.black.withOpacity(0.6), Colors.transparent],
                   ),
                 ),
               ),

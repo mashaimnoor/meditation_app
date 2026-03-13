@@ -12,7 +12,6 @@ class PlayerScreen extends StatefulWidget {
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
-
   final AudioPlayer _audioPlayer = AudioPlayer();
 
   bool isPlaying = false;
@@ -62,19 +61,16 @@ class _PlayerScreenState extends State<PlayerScreen> {
     return Scaffold(
       body: Stack(
         children: [
-
           /// Background
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/images/img_3.png'),
+              image: DecorationImage(
+                image: AssetImage('assets/images/img_3.png'),
                 fit: BoxFit.contain,
                 alignment: Alignment.topCenter,
               ),
               gradient: LinearGradient(
-                colors: [
-                  Color.fromRGBO(252, 252, 252, 1),
-                  Color(0xfff4f2ee),
-                ],
+                colors: [Color.fromRGBO(252, 252, 252, 1), Color(0xfff4f2ee)],
                 begin: Alignment.topRight,
                 end: Alignment.bottomCenter,
               ),
@@ -86,7 +82,6 @@ class _PlayerScreenState extends State<PlayerScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
                 children: [
-
                   /// Top Buttons
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,12 +115,12 @@ class _PlayerScreenState extends State<PlayerScreen> {
                           SizedBox(width: 10),
                           _circleButton(Icons.download, () {}),
                         ],
-                      )
+                      ),
                     ],
                   ),
 
                   //Spacer(),
-                  SizedBox(height: 286,),
+                  SizedBox(height: 286),
 
                   /// Title
                   Text(
@@ -141,10 +136,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
 
                   Text(
                     "7 DAYS OF CALM",
-                    style: TextStyle(
-                      letterSpacing: 1.5,
-                      color: Colors.grey,
-                    ),
+                    style: TextStyle(letterSpacing: 1.5, color: Colors.grey),
                   ),
 
                   SizedBox(height: 40),
@@ -153,13 +145,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-
                       IconButton(
                         icon: Icon(Icons.replay_10),
                         iconSize: 32,
                         onPressed: () {
-                          final newPos =
-                              position - Duration(seconds: 15);
+                          final newPos = position - Duration(seconds: 15);
                           _audioPlayer.seek(newPos);
                         },
                       ),
@@ -185,9 +175,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                             shape: BoxShape.circle,
                           ),
                           child: Icon(
-                            isPlaying
-                                ? Icons.pause
-                                : Icons.play_arrow,
+                            isPlaying ? Icons.pause : Icons.play_arrow,
                             color: Colors.white,
                             size: 40,
                           ),
@@ -200,8 +188,7 @@ class _PlayerScreenState extends State<PlayerScreen> {
                         icon: Icon(Icons.forward_10),
                         iconSize: 32,
                         onPressed: () {
-                          final newPos =
-                              position + Duration(seconds: 15);
+                          final newPos = position + Duration(seconds: 15);
                           _audioPlayer.seek(newPos);
                         },
                       ),
@@ -215,17 +202,17 @@ class _PlayerScreenState extends State<PlayerScreen> {
                     min: 0,
                     max: duration.inSeconds.toDouble(),
                     value: position.inSeconds.toDouble().clamp(
-                        0, duration.inSeconds.toDouble()),
+                      0,
+                      duration.inSeconds.toDouble(),
+                    ),
                     onChanged: (value) {
-                      _audioPlayer
-                          .seek(Duration(seconds: value.toInt()));
+                      _audioPlayer.seek(Duration(seconds: value.toInt()));
                     },
                   ),
 
                   /// Time Row
                   Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(formatTime(position)),
                       Text(formatTime(duration)),
@@ -242,8 +229,11 @@ class _PlayerScreenState extends State<PlayerScreen> {
     );
   }
 
-  Widget _circleButton(IconData icon, VoidCallback? onTap,
-      {Color iconColor = Colors.black}) {
+  Widget _circleButton(
+    IconData icon,
+    VoidCallback? onTap, {
+    Color iconColor = Colors.black,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
