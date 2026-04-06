@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// Screens
 import 'package:meditationapp_task/screens/auth/signin_screen.dart';
 import 'package:meditationapp_task/screens/auth/signup_screen.dart';
 import 'package:meditationapp_task/screens/home/choose_topic.dart';
@@ -10,9 +15,15 @@ import 'package:meditationapp_task/screens/home/sleep_detail_screen.dart';
 import 'package:meditationapp_task/screens/home/sleep_screen.dart';
 import 'package:meditationapp_task/screens/home/welcome_screen.dart';
 import 'package:meditationapp_task/screens/home/welcome_sleep.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(MyApp());
 }
 
@@ -28,43 +39,20 @@ class MyApp extends StatelessWidget {
       if (seen && state.uri.toString() == '/') {
         return '/choose-topic';
       }
-
       return null;
     },
     routes: [
       GoRoute(path: '/', builder: (context, state) => WelcomeScreen()),
-
       GoRoute(path: '/signin', builder: (context, state) => SignInScreen()),
-
       GoRoute(path: '/signup', builder: (context, state) => SignUpScreen()),
-
       GoRoute(path: '/welcome', builder: (context, state) => WelcomeScreen()),
-
-      GoRoute(
-        path: '/choose-topic',
-        builder: (context, state) => ChooseTopicScreen(),
-      ),
-
+      GoRoute(path: '/choose-topic', builder: (context, state) => ChooseTopicScreen()),
       GoRoute(path: '/reminder', builder: (context, state) => ReminderScreen()),
-
       GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
-
-      GoRoute(
-        path: '/course',
-        builder: (context, state) => CourseDetailScreen(),
-      ),
-
-      GoRoute(
-        path: '/welcomesleep',
-        builder: (context, state) => WelcomeSleepScreen(),
-      ),
-
+      GoRoute(path: '/course', builder: (context, state) => CourseDetailScreen()),
+      GoRoute(path: '/welcomesleep', builder: (context, state) => WelcomeSleepScreen()),
       GoRoute(path: '/sleep', builder: (context, state) => SleepScreen()),
-
-      GoRoute(
-        path: '/sleepdetailscreen',
-        builder: (context, state) => SleepDetailScreen(),
-      ),
+      GoRoute(path: '/sleepdetailscreen', builder: (context, state) => SleepDetailScreen()),
     ],
   );
 
