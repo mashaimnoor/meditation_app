@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,6 +18,7 @@ import 'package:meditationapp_task/screens/home/welcome_screen.dart';
 import 'package:meditationapp_task/screens/home/welcome_sleep.dart';
 
 void main() async {
+  //FirebaseAuth.instance.setLanguageCode('en');
   WidgetsFlutterBinding.ensureInitialized();
 
   // Initialize Firebase
@@ -34,11 +36,30 @@ class MyApp extends StatelessWidget {
     initialLocation: '/',
     redirect: (context, state) async {
       final prefs = await SharedPreferences.getInstance();
-      final seen = prefs.getBool('seenWelcome') ?? false;
 
-      if (seen && state.uri.toString() == '/') {
-        return '/choose-topic';
+      final seen = prefs.getBool('seenWelcome') ?? false;
+      final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+
+
+      final isAuthRoute =
+          state.uri.toString() == '/signin' ||
+              state.uri.toString() == '/signup';
+
+      // If not seen welcome → stay on welcome
+      if (!seen && state.uri.toString() != '/') {
+        return '/';
       }
+
+      // If not logged in → only allow signin/signup
+      if (!isLoggedIn && !isAuthRoute) {
+        return '/signin';
+      }
+
+      // If logged in → prevent going back to signin/signup
+      if (isLoggedIn && isAuthRoute) {
+        return '/home';
+      }
+
       return null;
     },
     routes: [

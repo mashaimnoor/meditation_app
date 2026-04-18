@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meditationapp_task/widgets/course_card.dart';
+import 'package:go_router/go_router.dart';
+
 
 class HomeContent extends StatelessWidget {
   @override
@@ -58,10 +60,8 @@ class HomeContent extends StatelessWidget {
                       buttonColor: Colors.white,
                       textColor: Colors.white,
                       onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          '/course',
-                          arguments: "Basics",
+                       context.push(
+                         '/course',
                         );
                       },
                     ),
@@ -77,10 +77,8 @@ class HomeContent extends StatelessWidget {
                       buttonColor: Colors.white,
                       textColor: Colors.white,
                       onTap: () {
-                        Navigator.pushNamed(
-                          context,
+                        context.push(
                           '/course',
-                          arguments: "Relaxation",
                         );
                       },
                     ),

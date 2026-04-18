@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:meditationapp_task/widgets/signin_with_google.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -39,7 +42,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           child: IconButton(
                             icon: const Icon(Icons.arrow_back),
                             onPressed: () {
-                              Navigator.pop(context);
+                              context.pop(context);
                             },
                           ),
                         ),
@@ -88,26 +91,37 @@ class _SignInScreenState extends State<SignInScreen> {
                         const SizedBox(height: 20),
 
                         /// Google Button
-                        Container(
-                          width: double.infinity,
-                          height: 55,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                            border: Border.all(color: Colors.grey.shade300),
+                        GestureDetector(
+                          onTap: () async {
+                            var user = await signInWithGoogle();
+
+                            if (user != null) {
+                              context.go('/home');
+                            }
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 55,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(30),
+                              border: Border.all(color: Colors.grey.shade300),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset('assets/images/img_2.png', width: 24),
+                                const SizedBox(width: 20),
+                                const Text(
+                                  "CONTINUE WITH GOOGLE",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/images/img_2.png', width: 24),
-                              SizedBox(width: 40),
-                              Text(
-                                "CONTINUE WITH GOOGLE",
-                                style: TextStyle(fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                        ),
+                        )
                       ],
                     ),
                   ),
@@ -194,9 +208,21 @@ class _SignInScreenState extends State<SignInScreen> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.pushReplacementNamed(context, '/welcome');
+                          try {
+                            final user = await FirebaseAuth.instance
+                                .signInWithEmailAndPassword(
+                              email: emailController.text.trim(),
+                              password: passwordController.text.trim(),
+                            );
+
+                            if (user.user != null) {
+                              context.go('/home');
+                            }
+                          } catch (e) {
+                            print("LOGIN ERROR: $e");
+                          }
                         }
                       },
                       child: const Text(
@@ -230,7 +256,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, '/signup');
+                          context.go( '/signup');
                         },
                         child: const Text(
                           "SIGN UP",

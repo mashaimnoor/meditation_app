@@ -1,6 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:meditationapp_task/widgets/signin_with_google.dart';
+import 'package:go_router/go_router.dart';
+
 
 void main() {
   runApp(SignUpScreen());
@@ -20,7 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
-  bool _obscurePassword = true;
+  final _obscurePassword = true;
   bool _ischecked = false;
   @override
   Widget build(BuildContext context) {
@@ -99,26 +101,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         const SizedBox(height: 20),
 
                         /// Google Button
-                        Container(
-                          width: double.infinity,
-                          height: 55,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(30),
-                            border: Border.all(color: Colors.grey.shade300),
+                        GestureDetector(
+                          onTap: () async {
+                            var user = await signInWithGoogle();
+
+                            if (user != null) {
+                              context.go('/home');
+                            }
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: 55,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(30),
+                              border: Border.all(color: Colors.grey.shade300),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset('assets/images/img_2.png', width: 24),
+                                const SizedBox(width: 20),
+                                const Text(
+                                  "CONTINUE WITH GOOGLE",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/images/img_2.png', width: 24),
-                              SizedBox(width: 40),
-                              Text(
-                                "CONTINUE WITH GOOGLE",
-                                style: TextStyle(fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ),
-                        ),
+                        )
                       ],
                     ),
                   ),
@@ -252,7 +265,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          Navigator.pushReplacementNamed(context, '/welcome');
+                          context.go ( '/welcome');
                         }
                       },
                       child: const Text(

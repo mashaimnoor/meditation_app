@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_time_picker_spinner/flutter_time_picker_spinner.dart';
 import 'package:meditationapp_task/screens/home/home_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class ReminderScreen extends StatefulWidget {
   @override
@@ -147,10 +148,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
                     minimumSize: Size(double.infinity, 55),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => HomeScreen()),
-                    );
+                   context.push('/home');
                   },
                   child: Text("Save"),
                 ),
@@ -158,14 +156,26 @@ class _ReminderScreenState extends State<ReminderScreen> {
 
               SizedBox(height: 9),
 
-              Center(
-                child: Text(
-                  "NO THANKS",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontWeight: FontWeight.w500,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "No ",
+                    style: TextStyle(color: Colors.grey),
                   ),
-                ),
+                  GestureDetector(
+                    onTap: () {
+                      context.push( '/home');
+                    },
+                    child: const Text(
+                      "Thanks",
+                      style: TextStyle(
+                        color: Color.fromRGBO(142, 151, 253, 1),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
               SizedBox(height: 20),
