@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:meditationapp_task/screens/auth/silent_moon_app.dart';
+import 'package:meditationapp_task/screens/home/splash_screen.dart';
 import 'firebase_options.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -42,42 +44,41 @@ class MyApp extends StatelessWidget {
 
   final GoRouter _router = GoRouter(
     initialLocation: '/',
-    redirect: (context, state) {
-      final isAuthRoute =
-          state.uri.toString() == '/signin' ||
-              state.uri.toString() == '/signup';
 
-      // If welcome not seen
-      if (!seenWelcome && state.uri.toString() != '/') {
-        return '/';
+    redirect: (context, state) {
+      final location = state.uri.toString();
+
+      // Splash page allow
+      if (location == '/') return null;
+
+      // First time user
+      if (!seenWelcome) {
+        return '/welcome';
       }
 
-      // If not logged in
-      if (!isLoggedIn && !isAuthRoute) {
+      // Not logged in
+      if (!isLoggedIn) {
         return '/signin';
       }
 
-      // If already logged in
-      if (isLoggedIn && isAuthRoute) {
-        return '/home';
-      }
-
+      // Logged in → home
       return null;
     },
     routes: [
-      GoRoute(path: '/', builder: (context, state) => WelcomeScreen()),
-      GoRoute(path: '/signin', builder: (context, state) => SignInScreen()),
-      GoRoute(path: '/signup', builder: (context, state) => SignUpScreen()),
+      GoRoute(path: '/', builder: (c, s) => SplashScreen()),
+      GoRoute(path: '/welcome', builder: (c, s) => WelcomeScreen()),
+      GoRoute(path: '/signin', builder: (c, s) => SignInScreen()),
+      GoRoute(path: '/moonapp', builder: (c, s) => SilentMoonApp()),
+      GoRoute(path: '/home', builder: (c, s) => HomeScreen()),
+      GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
       GoRoute(path: '/choose-topic', builder: (context, state) => ChooseTopicScreen()),
       GoRoute(path: '/reminder', builder: (context, state) => ReminderScreen()),
-      GoRoute(path: '/home', builder: (context, state) => HomeScreen()),
       GoRoute(path: '/course', builder: (context, state) => CourseDetailScreen()),
       GoRoute(path: '/welcomesleep', builder: (context, state) => WelcomeSleepScreen()),
       GoRoute(path: '/sleep', builder: (context, state) => SleepScreen()),
       GoRoute(path: '/sleepdetailscreen', builder: (context, state) => SleepDetailScreen()),
     ],
   );
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
