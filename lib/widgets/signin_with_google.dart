@@ -1,7 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-Future<UserCredential?> signInWithGoogle() async {
+import '../main.dart';
+
+// IMPORTANT: import your global variable file OR same file where isLoggedIn exists
+// bool isLoggedIn = false;
+
+Future<UserCredential?> signInWithGoogle(BuildContext context) async {
   try {
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
@@ -17,9 +25,22 @@ Future<UserCredential?> signInWithGoogle() async {
       idToken: googleAuth.idToken,
     );
 
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    final userCredential =
+    await FirebaseAuth.instance.signInWithCredential(credential);
+
+    // ✅ SAVE LOGIN STATE
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', true);
+
+    // ✅ UPDATE GLOBAL VARIABLE
+    isLoggedIn = true;
+
+    // ✅ NAVIGATE
+    context.go('/home');
+
+    return userCredential;
   } catch (e) {
-    ("Error: $e");
+    print("Error: $e");
     return null;
   }
 }

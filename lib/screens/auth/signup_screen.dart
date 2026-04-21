@@ -103,7 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         /// Google Button
                         GestureDetector(
                           onTap: () async {
-                            var user = await signInWithGoogle();
+                            var user = await signInWithGoogle(context);
 
                             if (user != null) {
                               context.go('/home');
